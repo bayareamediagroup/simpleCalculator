@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en" ng-app="simpleApp">
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet">
+		<link href="/app/css/style.css" rel="stylesheet">
+		<title>Simple Calculator</title>
+	</head>
+
+	<body>
+		<nav class="navbar navbar-expand-lg navbar-light bg-light">
+			<div class="container-md">
+				<a class="navbar-brand" href="#">Calculator</a>
+			</div>
+		</nav>
+		<div class="container">
+			<div ng-controller="ctrlMain as main">
+				<div class="row" style="border: 1px solid #efefef;margin-bottom: 20px;">
+					<div class="col-2">+&nbsp;<input type="radio" name="equation" ng-model="operation" value="Addition" />
+					</div>
+					<div class="col-2">/&nbsp;<input type="radio" name="equation" ng-model="operation" value="Division" />
+					</div>
+					<div class="col-2">*&nbsp;<input type="radio" name="equation" ng-model="operation"
+																				  value="Multiplication" />
+					</div>
+					<div class="col-2">-&nbsp;<input type="radio" name="equation" ng-model="operation"
+																				  value="Subtraction" /></div>
+					<div class="col-2" ng-bind="operation"></div>
+				</div>
+
+				<form ng-submit="main.add(user.gender)">
+					<div class="row mb-3">
+						<div class="col-7">
+							<input type="text" class="form-control" ng-model="main.value1" ng-minlength="1" required />
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-7">
+							<input type="text" class="form-control" ng-model="main.value2" ng-minlength="1" required />
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="col">
+							<hr />
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-4"><button type="button" class="btn btn-success"
+																 ng-click="main.operation(operation)">Calculate</button></div>
+						<div class="col-3"><button type="button" class="btn btn-primary"
+																 ng-click="main.clear()">Clear</button></div>
+						<div class="col-2"><button type="button" class="btn btn-danger"
+																 ng-click="main.clearAll()">C</button></div>
+					</div>
+				</form>
+
+				<div class="row">
+					<div class="col">
+						<hr />
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col-2">
+						<div class="row">
+							<span class="col-3" ng-bind="main.equation.length"></span>
+						</div>
+					</div>
+					<div class="col-4">
+						<div ng-repeat="equation in main.equation">
+							<div class="row">
+								<span class="col-12" ng-bind="equation">&nbsp;</span>
+							</div>
+						</div>
+					</div>
+					<div class="col-5">
+						<div ng-repeat="result in main.result">
+							<div class="row">
+								<div class="col-12 bold">{{result}}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+		<script src="app/app.js"></script>
+		<script src="app/controllers/ctrlMain.js"></script>
+	</body>
+
+</html>
